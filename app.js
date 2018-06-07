@@ -30,7 +30,9 @@ const fakedata = (amount = 100) => {
                     date: faker.date.past(),
                     sensorKind: getRandomByType('sensorKind'),
                     resolutionWidth: getRandomByType('resolutionWidth'),
-                    resolutionHeight: getRandomByType('resolutionHeight')
+                    resolutionHeight: getRandomByType('resolutionHeight'),
+                    point:getRandomPoint()
+                    
 
                 }
             })
@@ -56,8 +58,11 @@ const generateDataFaker = (fakerType, size, fakerFunction) => {
 }
 
 const getRandomByType = (fakerType) => data[fakerType].data[Math.round(Math.random() * data[fakerType].size - 1)]
-
+const getRandomPoint= ()=> ({latitude: getPointHelper("39.83"),longitude: getPointHelper("-74.87")}) 
 //cli
+
+const getPointHelper = (point)=> point+Math.floor(Math.random() * 10);
+
 generateDataForIndex();
 if (args.length == 2) {
     fakedata(args[2])
